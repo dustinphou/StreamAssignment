@@ -13,10 +13,7 @@ PatternMatch.prototype._transform = function (chunk, encoding, getNextChunk){
 var string = chunk.toString()
 console.log("----------------Input----------------\n", string, '\n')
 var result = string.split(program.pattern)
-if(result[result.length-1] == '')	//cuts off the null result when '.' is argument
-{
-	result.length -= 1
-}
+result.length -= 1	//cuts off the last result from the result array, since no other matches should hav been found in this portion
 this.push(result)
 getNextChunk()	//callback just causes stream to proceed to next chunk, does not need to be defined
 }
