@@ -11,6 +11,7 @@ inherits(PatternMatch, Transform)
 
 PatternMatch.prototype._transform = function (chunk, encoding, getNextChunk){
 var string = chunk.toString()
+console.log("----------------Input----------------\n", string, '\n')
 var result = string.split(program.pattern)
 if(result[result.length-1] == '')	//cuts off the null result when '.' is argument
 {
@@ -31,5 +32,6 @@ var instream = fs.createReadStream("input-sensor.txt")
 var patternStream = instream.pipe(new PatternMatch())
 
 patternStream.on('data', function(data) {
+	console.log("----------------Output----------------")
 	console.log(data)
 })
